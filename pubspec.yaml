@@ -1,8 +1,7 @@
 name: arup_util
 description: Collection of Widgets and helpful Methods that every developer needs.
 version: 0.0.1
-homepage: arupnaskar.in
-publish_to: 'none'
+homepage: https://github.com/arupnaskarbkp/arup_util.git
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
