@@ -1,15 +1,27 @@
 name: arup_util
 description: Collection of Widgets and helpful Methods that every developer needs.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/arupnaskarbkp/arup_util.git
 
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+
+  cached_network_image: ^3.2.2
+  flutter_svg: ^1.1.5
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
