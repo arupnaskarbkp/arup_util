@@ -1,15 +1,12 @@
 name: arup_util
 description: Collection of Widgets and helpful Methods that every developer needs.
-version: 0.0.2
-homepage: https://github.com/arupnaskarbkp/arup_util.git
+version: 0.0.3
 
-platforms:
-  android:
-  ios:
-  linux:
-  macos:
-  web:
-  windows:
+#homepage: https://github.com/arupnaskarbkp/arup_util.git
+
+repository: https://github.com/arupnaskarbkp/arup_util.git
+issue_tracker: https://github.com/arupnaskarbkp/arup_util/issues
+
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

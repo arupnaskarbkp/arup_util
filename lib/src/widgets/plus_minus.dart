@@ -1,4 +1,5 @@
-import 'package:arup_util/arup_util.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 Widget plusMinus({
   required final Function(int) onChanged,
@@ -10,6 +11,9 @@ Widget plusMinus({
   final TextStyle? textStyle,
   final MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center,
   final MainAxisSize mainAxisSize = MainAxisSize.min,
+  final Color plusColor = Colors.black,
+  final Color minusColor = Colors.black,
+  final double plusMinusIconSize = 30,
 }) {
   final RxInt currentAmount = defaultValue.obs;
 
@@ -43,9 +47,9 @@ Widget plusMinus({
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       children: <Widget>[
-        GestureDetector(onTap: increaseAmount, child: addWidget ?? const Icon(Icons.add_circle, size: 30)),
+        GestureDetector(onTap: increaseAmount, child: addWidget ?? Icon(Icons.add_circle,color: plusColor, size: plusMinusIconSize)),
         Text(amountString(), style: textStyle).marginSymmetric(horizontal: spaceBetween),
-        GestureDetector(onTap: decreaseAmount, child: minusWidget ?? const Icon(Icons.remove_circle, size: 30)),
+        GestureDetector(onTap: decreaseAmount, child: minusWidget ?? Icon(Icons.remove_circle,color: minusColor, size: plusMinusIconSize)),
       ],
     ),
   );

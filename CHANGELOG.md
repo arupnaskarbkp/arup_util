@@ -6,3 +6,7 @@
 
 * add image widgets.
 * add plus minus widgets.
+
+## 0.0.3
+
+* bug fixed.
