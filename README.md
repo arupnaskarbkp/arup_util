@@ -22,4 +22,9 @@ import 'package:arup_util/arup_util.dart';
 ```dart
 
 Widget alignAtBottomCenter({double? heightFactor, double? widthFactor});
+
+fadeImage(url, placeholder, borderRadius, height, width, fit);
+image(url, placeholder, borderRadius, height, width, fit);
+plusMinus(onChanged);
+
 ```

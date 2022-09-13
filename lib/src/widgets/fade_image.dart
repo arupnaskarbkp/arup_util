@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:arup_util/src/widgets/image.dart';
 
-Widget image(
+Widget fadeImage(
     final String source, {
       final Color? color,
       final double? width,
@@ -11,7 +11,7 @@ Widget image(
       final Clip clipBehavior = Clip.hardEdge,
       final BorderRadius borderRadius = BorderRadius.zero,
       final EdgeInsets margin = EdgeInsets.zero,
-      final String? placeholder,
+      required final String? placeholder,
       final VoidCallback? onTap,
     }) {
   if (source.length <= 10) {
@@ -32,7 +32,7 @@ Widget image(
     }
   } else {
     if (source.contains("http://") || source.contains("https://")) {
-      return imageNetwork(
+      return imageNetworkLocal(
         source,
         width: width,
         height: height,
@@ -60,39 +60,7 @@ Widget image(
   }
 }
 
-Widget imageAsset(
-    final String asset, {
-      final Color? color,
-      final double? width,
-      final double? height,
-      final BoxFit fit = BoxFit.contain,
-      final Clip clipBehavior = Clip.hardEdge,
-      final BorderRadius borderRadius = BorderRadius.zero,
-      final EdgeInsets margin = EdgeInsets.zero,
-      final VoidCallback? onTap,
-    }) =>
-    GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: borderRadius),
-        margin: margin,
-        width: width,
-        height: height,
-        child: asset.substring(asset.length - 3).toLowerCase() == "svg"
-            ? SvgPicture.asset(
-          asset,
-          color: color,
-          width: width,
-          height: height,
-          fit: fit,
-          clipBehavior: clipBehavior,
-        )
-            : Image.asset(asset, color: color, width: width, height: height, fit: fit),
-      ),
-    );
-
-Widget imageNetwork(
+Widget imageNetworkLocal(
     final String url, {
       final Color? color,
       final double? width,
@@ -102,7 +70,7 @@ Widget imageNetwork(
       final BorderRadius borderRadius = BorderRadius.zero,
       final EdgeInsets margin = EdgeInsets.zero,
       final VoidCallback? onTap,
-      final String? placeholder,
+      required final String? placeholder,
     }) =>
     GestureDetector(
       onTap: onTap,
@@ -139,13 +107,12 @@ Widget imageNetwork(
             clipBehavior: clipBehavior,
           ),
         )
-            : CachedNetworkImage(
-          imageUrl: url,
-          color: color,
+            : FadeInImage.assetNetwork(
+          image: url,
           width: width,
           height: height,
           fit: fit,
-          errorWidget: placeholder == null
+          imageErrorBuilder: placeholder == null
               ? null
               : (final _, final __, final ___) => imageAsset(
             placeholder,
@@ -155,18 +122,7 @@ Widget imageNetwork(
             fit: fit,
             clipBehavior: clipBehavior,
           ),
-          placeholder: placeholder == null
-              ? null
-              : (final _, final __) => imageAsset(
-            placeholder,
-            color: color,
-            width: width,
-            height: height,
-            fit: fit,
-            clipBehavior: clipBehavior,
-          ),
+          placeholder: placeholder!,
         ),
       ),
     );
-
-
